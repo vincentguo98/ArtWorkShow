@@ -37,7 +37,7 @@ def hello_world():
 @app.route('/index')
 def index():
     col_num = 15
-    row_num = 10
+    row_num = 14
     preview_dic,preview_list = get_folder_dic('./static/preview_img')
     legends = [1,2,4,6,7,9,10,11,20]
     print(preview_list)
@@ -61,4 +61,4 @@ def show(work_id):
 
 
 if __name__ == '__main__':
-    app.run()
+    app.run(port = 6000,debug=True)
