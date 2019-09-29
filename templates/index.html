@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{{ url_for('static',filename='./css/bootstrap.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='./css/bootstrap-grid.css')}}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='./css/bootstrap-reboot.css')}}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='./css/custom.css')}}">
+    <script src="{{ url_for('static',filename="./js/bootstrap.js") }}"></script>
+    <script src="{{ url_for('static',filename="./js/bootstrap.bundle.js") }}"></script>
+    <script src=""></script>
+    <title>Tracy's Website</title>
+</head>
+<body style="text-align: center">
+    <div class="container-fluid">
+       <div class="preview" style="text-align: center">
+            {% for work_col in  preview_list%}
+                {%  for work_row in range(1,preview_dic[work_col] + 1) %}
+                    <div class="img_container" style="grid-column: {{ work_col }}; grid-row : {{ work_row }};">
+                    {% set work_id = work_col|string + '_'+ work_row|string %}
+                        <a href="/show/{{ work_id }}"><img src="{{ url_for('static',filename="cheatsheet.jpg") }}"></a>
+                    </div>
+                {% endfor %}
+            {% endfor %}
+        </div>
+    </div>
+</body>
+</html>
