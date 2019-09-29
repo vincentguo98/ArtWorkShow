@@ -36,11 +36,17 @@ def hello_world():
 
 @app.route('/index')
 def index():
+    col_num = 15
+    row_num = 10
     preview_dic,preview_list = get_folder_dic('./static/preview_img')
-    return render_template('./index.html',preview_dic = preview_dic,preview_list=preview_list)
+    legends = [1,2,4,6,7,9,10,11,20]
+    print(preview_list)
+    return render_template('./index.html',preview_dic = preview_dic,preview_list=preview_list,\
+                           col_num = col_num,row_num = row_num,legends = legends)
 
 @app.route('/show/<string:work_id>')
 def show(work_id):
+
     if not os.path.exists(os.path.join('./static/work/',work_id)):
         return render_template_string("No such work yet")
     file_list = get_filename(os.path.join('./static/work/',work_id))

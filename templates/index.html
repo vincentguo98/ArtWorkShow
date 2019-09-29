@@ -13,14 +13,20 @@
 </head>
 <body style="text-align: center">
     <div class="container-fluid">
-       <div class="preview" style="text-align: center">
+       <div class="preview" style="text-align: center;grid-template-columns: repeat({{ col_num }},40px);grid-template-rows: repeat({{ row_num }},40px);">
             {% for work_col in  preview_list%}
                 {%  for work_row in range(1,preview_dic[work_col] + 1) %}
-                    <div class="img_container" style="grid-column: {{ work_col }}; grid-row : {{ work_row }};">
+                    <div class="img_container" style="grid-column: {{ 2 * work_col - 1 }}; grid-row : {{ col_num - work_row }};">
                     {% set work_id = work_col|string + '_'+ work_row|string %}
-                        <a href="/show/{{ work_id }}"><img src="{{ url_for('static',filename="cheatsheet.jpg") }}"></a>
+                    {% set preview_filename ='preview_img/' + work_col|string + '/'+ work_row|string + '.jpg' %}
+                        <a href="/show/{{ work_id }}"><img src="{{ url_for('static',filename=preview_filename) }}"></a>
                     </div>
                 {% endfor %}
+            {% endfor %}
+            {% for work_col in  preview_list%}
+                 <div class="img_container" style="grid-column: {{ 2 * work_col - 1 }}; grid-row : {{ col_num }};">
+                        <h3>{{ legends[work_col-1] }}</h3>
+                 </div>
             {% endfor %}
         </div>
     </div>
